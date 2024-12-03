@@ -1,34 +1,31 @@
 <template>
-  <div v-if="destination">
+  <div class="destination-detail">
     <h1>{{ destination.name }}</h1>
     <img :src="`/imatges/${destination.image}`" :alt="destination.name" />
     <p>{{ destination.description }}</p>
     <h2>Experiencias</h2>
-    <ul>
-      <li v-for="experience in destination.experiences" :key="experience.slug">
-        <img :src="`/imatges/${experience.image}`" :alt="experience.name" />
-        <h3>{{ experience.name }}</h3>
-        <p>{{ experience.description }}</p>
-      </li>
-    </ul>
-    <router-link to="/">Volver</router-link>
+    <div class="experiences">
+      <ExperienceCard
+        v-for="experience in destination.experiences"
+        :key="experience.slug"
+        :experience="experience"
+      />
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      destination: null
-    };
-  },
-  mounted() {
-    const slug = this.$route.params.slug;
-    fetch('/src/assets/data.json') 
-      .then((response) => response.json())
-      .then((data) => {
-        this.destination = data.destinations.find((dest) => dest.slug === slug);
-      });
-  }
-};
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import data from '@/assets/data.json'; 
+import ExperienceCard from '@/components/ExperienceCard.vue';
+
+const route = useRoute();
+const destination = ref(null);
+
+onMounted(() => {
+  destination.value = data.destinations.find(
+    (dest) => dest.id === parseInt(route.params.id)
+  ); 
+});
 </script>

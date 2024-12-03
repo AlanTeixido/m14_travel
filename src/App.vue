@@ -1,12 +1,9 @@
 <template>
-    <div id="app">
-      <router-view></router-view>
-    </div>
+    <NavBar />
+    <router-view />
   </template>
   
-  <script>
-  export default {
-    name: 'App'
-  };
+  <script setup>
+  import NavBar from '@/components/NavBar.vue';
   </script>
   

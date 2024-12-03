@@ -1,30 +1,24 @@
 <template>
-  <div>
+  <div class="home">
     <h1>Destinos</h1>
-    <ul>
-      <li v-for="destination in destinations" :key="destination.id">
-        <img :src="`/imatges/${destination.image}`" :alt="destination.name" />
-        <h2>{{ destination.name }}</h2>
-        <p>{{ destination.description }}</p>
-        <router-link :to="'/destination/' + destination.slug">Ver más</router-link>
-      </li>
-    </ul>
+    <div class="destinations">
+      <DestinationCard
+        v-for="destination in destinations"
+        :key="destination.id"
+        :destination="destination"
+      />
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      destinations: []
-    };
-  },
-  mounted() {
-    fetch('/src/assets/data.json') 
-      .then((response) => response.json())
-      .then((data) => {
-        this.destinations = data.destinations;
-      });
-  }
-};
+<script setup>
+import { ref, onMounted } from 'vue';
+import data from '@/assets/data.json'; 
+import DestinationCard from '@/components/DestinationCard.vue';
+
+const destinations = ref([]);
+
+onMounted(() => {
+  destinations.value = data.destinations; 
+});
 </script>

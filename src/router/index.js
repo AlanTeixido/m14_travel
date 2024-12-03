@@ -1,23 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import DestinationDetailView from '../views/DestinationDetail.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import('@/views/HomeView.vue'),
   },
   {
-    path: '/destination/:slug',
-    name: 'destination-detail',
-    component: DestinationDetailView
-  }
+    path: '/destination/:id/:slug',
+    name: 'destination.detail',
+    component: () => import('@/views/DestinationDetail.vue'),
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+    children: [
+      {
+        path: ':experienceSlug',
+        name: 'experience.detail',
+        component: () => import('@/components/ExperienceCard.vue'),
+        props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+      },
+    ],
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/AboutView.vue'),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;
