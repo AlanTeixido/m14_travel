@@ -1,11 +1,7 @@
 <template>
-    <div class="card">
-      <img :src="`/imatges/${destination.image}`" :alt="destination.name" />
-      <h2>{{ destination.name }}</h2>
-      <p>{{ destination.description }}</p>
-      <router-link :to="'/destination/' + destination.id + '/' + destination.slug">
-        Ver más
-      </router-link>
+    <div class="container">
+        <h2>{{ destination.name }}</h2>
+        <img :src="`/imatges/${destination.image}`" :alt="destination.name" />
     </div>
   </template>
   
