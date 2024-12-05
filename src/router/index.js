@@ -1,29 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '@/views/HomeView.vue';
+import DestinationDetail from '@/views/DestinationDetail.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomeView.vue'),
+    component: HomeView,
   },
   {
-    path: '/destination/:id/:slug',
-    name: 'destination.detail',
-    component: () => import('@/views/DestinationDetail.vue'),
-    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
-    children: [
-      {
-        path: ':experienceSlug',
-        name: 'experience.detail',
-        component: () => import('@/components/ExperienceCard.vue'),
-        props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
-      },
-    ],
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/AboutView.vue'),
+    path: '/destination/:id',
+    name: 'destination-detail',
+    component: DestinationDetail,
+    props: true, // Esto pasa los parámetros como props al componente
   },
 ];
 
