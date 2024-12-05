@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import data from '@/assets/data.json';
-import DestinationCard from '@/components/DestinationCard.vue';
+import { ref, onMounted } from "vue";
+import data from "@/assets/data.json";
+import DestinationCard from "@/components/DestinationCard.vue";
 
 const destinations = ref([]);
 

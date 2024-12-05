@@ -12,7 +12,15 @@ const routes = [
     path: '/destination/:id',
     name: 'destination-detail',
     component: DestinationDetail,
-    props: true, // Esto pasa los parámetros como props al componente
+    props: true,
+    children: [
+      {
+        path: ':experienceSlug',
+        name: 'experience-show',
+        component: ExperienceShow,
+        props: true,
+      },
+    ],
   },
 ];
 

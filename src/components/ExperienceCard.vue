@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-      <h3>{{ experience.name }}</h3>
-      <img :src="`/imatges/${experience.image}`" :alt="experience.name" />
+        <h3>{{ experience.name }}</h3>
+        <img :src="`/imatges/${experience.image}`" :alt="experience.name" />
       <p>{{ experience.description }}</p>
     </div>
   </template>
