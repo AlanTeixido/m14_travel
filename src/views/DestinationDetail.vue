@@ -1,21 +1,16 @@
 <template>
   <div class="destination-details container">
-    <!-- Botón para volver -->
     <router-link class="go-back" to="/">Go back</router-link>
 
-    <!-- Información principal del destino -->
-    <div class="destination-info">
-      <img :src="`/imatges/${destination?.image}`" :alt="destination?.name" />
-      <div>
-        <h1>{{ destination?.name }}</h1>
+    <div>
+      <h1>{{ destination?.name }}</h1>
+      <div class="destination-info">
+        <img :src="`/imatges/${destination?.image}`" :alt="destination?.name" />
         <p>{{ destination?.description }}</p>
       </div>
     </div>
 
-    <!-- Título de experiencias -->
     <h2>Top experiences in {{ destination?.name }}</h2>
-
-    <!-- Tarjetas de experiencias -->
     <div class="experiences cards">
       <div
         class="card"
@@ -28,6 +23,8 @@
         </router-link>
       </div>
     </div>
+
+    <router-view />
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import DestinationDetail from '@/views/DestinationDetail.vue';
+import ExperienceDetail from '@/components/ExperienceDetail.vue';
 
 const routes = [
   {
@@ -10,14 +11,14 @@ const routes = [
   },
   {
     path: '/destination/:id',
-    name: 'destination-detail',
+    name: 'DestinationDetail',
     component: DestinationDetail,
     props: true,
     children: [
       {
         path: ':experienceSlug',
-        name: 'experience-show',
-        component: ExperienceShow,
+        name: 'ExperienceDetail',
+        component: ExperienceDetail,
         props: true,
       },
     ],
