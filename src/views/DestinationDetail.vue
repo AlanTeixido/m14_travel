@@ -30,15 +30,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import data from '@/assets/data.json';
 
 const route = useRoute();
 const destination = ref(null);
 
-onMounted(() => {
+const fetchDestination = () => {
   const id = parseInt(route.params.id);
   destination.value = data.destinations.find((dest) => dest.id === id);
-});
+};
+
+watch(() => route.params.id, fetchDestination, { immediate: true });
 </script>
