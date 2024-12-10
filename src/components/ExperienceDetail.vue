@@ -7,24 +7,18 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, computed } from 'vue';
   import { useRoute } from 'vue-router';
   import data from '@/assets/data.json';
   
   const route = useRoute();
-  const experience = ref(null);
-  
-  onMounted(() => {
-    const destinationId = parseInt(route.params.id);
-    const experienceSlug = route.params.experienceSlug;
-  
-    const destination = data.destinations.find((dest) => dest.id === destinationId);
-  
-    if (destination) {
-      experience.value = destination.experiences.find(
-        (exp) => exp.slug === experienceSlug
-      );
-    }
-  });
+
+  const destinationId = parseInt(route.params.id);
+  const destination = data.destinations.find((dest) => dest.id === destinationId);
+
+  const experience = computed(() => {
+    return destination.experiences.find((exp) => exp.slug === route.params.experienceSlug);
+  })
+
   </script>
   

@@ -13,13 +13,11 @@ const routes = [
     path: '/destination/:id',
     name: 'DestinationDetail',
     component: DestinationDetail,
-    props: true,
     children: [
       {
         path: ':experienceSlug',
         name: 'ExperienceDetail',
         component: ExperienceDetail,
-        props: true,
       },
     ],
   },
