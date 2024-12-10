@@ -12,8 +12,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import data from "@/assets/data.json";
+import { ref } from 'vue';
+import data from '@/assets/data.json';
 
-const destinations = computed(() => data.destinations);
+const destinations = ref(data.destinations);
 </script>
